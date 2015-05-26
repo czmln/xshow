@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+	<!-- 免权限 -->
+    <http pattern="/admin/login" security="none"/>
+    <http pattern="/upload/**" security="none"/> 
+    <http pattern="/upload/***" security="none"/> 
+    <http pattern="/framework/desktop/images/**" security="none"/>
+    <http pattern="/framework/desktop/css/**" security="none"/>
+    <http pattern="/web/**" security="none"/>
+    <http pattern="*" security="none"/>
+    <http pattern="/view/desk/image/*" security="none"/>
+    <http pattern="/view/desk/js/*" security="none"/>
+    <http pattern="/view/desk/css/*" security="none"/>
+    <http use-expressions="true" access-denied-page="/admin/login">
+  
+        <!--<intercept-url pattern="/**" access="permitAll" />-->
+        
+        <!-- 那些职员需要权限  -->
+        <intercept-url pattern="/framework/desktop/**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/view/**" access="hasRole('ROLE_USER')" />
+        
+        <!--允许ROLE_ADMIN权限访问-->  
+		<!--<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />  -->
+        
+         
+        <form-login login-page="/admin/login" authentication-failure-url="/admin/login"   default-target-url="/framework/desktop/index.jsp" />
+        
+        <logout logout-success-url="/admin/login" delete-cookies="JSESSIONID"/>
+        
+        <remember-me />
+        
+        <session-management invalid-session-url="" />  
+
+        <session-management invalid-session-url="">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>
+
+    </http>
+   	
+   	<!-- 
+    <beans:bean id="userDetailsService" class="com.kt.pro.admin.service.AdminService" />  
+   
+    <authentication-manager alias="authenticationManager">  
+        <authentication-provider user-service-ref="userDetailsService" />  
+    </authentication-manager>
+     -->
+     <authentication-manager alias="authenticationManager">  
+	    <authentication-provider ref="authenticationProvider" />  
+	</authentication-manager>  
+	
+	<beans:bean id="myUserDetailsService" class="com.sg.syj.admin.service.impl.LoginServiceImpl" /> 
+	
+	<beans:bean id="authenticationProvider"  
+	    class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">  
+	    <beans:property name="userDetailsService" ref="myUserDetailsService" />  
+	    <beans:property name="hideUserNotFoundExceptions" value="false" />  
+	    <beans:property name="passwordEncoder" ref="myPasswordEncode"/>       
+	</beans:bean>  
+	 
+    <!-- 自定义的密码加密方式 -->
+	<beans:bean id="myPasswordEncode" class="com.sg.syj.common.util.MyPasswordEncode"></beans:bean>   
+
+   	<!--  
+    <authentication-manager>
+        <authentication-provider>
+           
+            <user-service>
+                <user name="admin" password="admin" authorities="supervisor,edit"  />
+                <user name="dianne" password="admin" authorities="supervisor" />
+            </user-service>
+            
+        </authentication-provider>
+    </authentication-manager>
+	-->
+</beans:beans>

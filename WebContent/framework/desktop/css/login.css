@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+*{
+	margin:0px;
+	padding:0px;}
+
+.l-bg{
+	background:url("images/topbg_01.jpg") repeat-x scroll 0 0 #006699;
+	/*background:url(../images/l-bg.jpg);
+	background-position:center;
+	background-repeat: no-repeat;
+    background-attachment: fixed;*/}
+	
+.l-box{
+	width:580px;
+	height:365px;
+	margin:0 auto;
+	margin-top:240px;
+	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif;
+	}
+	
+.box-h{
+	height:40px;
+	line-height:40px;
+	color:#fff;
+	text-align:center;
+	}
+
+.box-h h2{
+	font-weight:normal;
+	font-size:30px;}
+	
+.box-dl{
+	width:580px;
+	height:295px;
+	background:#fff;
+	border-radius:20px;
+	border:1px solid #2580b9;
+	margin-top:15px;}
+	
+.l-left{
+	width:175px;
+	height:295px;
+	border-right:1px solid #ccc;
+	float:left;}
+	
+.l-left img{
+	margin-top:80px;
+	padding-left:10px;}	
+	
+.l-rig{
+	width:330px;
+	height:295px;
+	float:left;
+	margin-left:30px;}
+	
+.rig-tit{
+	width:330px;
+	height:60px;
+	line-height:60px;
+	color:#006699;
+	padding:10px 0;
+	font-size:18px;}
+	
+.rig-tit span{
+	color:#999;
+	padding-left:10px;}
+	
+.rig-i{
+	width:330px;
+	height:40px;
+	padding:10px 0;}
+	
+.user{
+	width:270px;
+	height:40px;
+	border:1px solid #e3e3e3;
+	border-radius:8px;
+	background:url(../images/l-logo_06.jpg) no-repeat left;
+	padding-left:40px;}
+	
+.pwd{
+	width:270px;
+	height:40px;
+	border:1px solid #e3e3e3;
+	border-radius:8px;
+	background:url(../images/l-logo_10.jpg) no-repeat left;
+	padding-left:40px;}
+	
+.btn{
+	background:url(../images/l-logo_14.jpg) no-repeat;
+	width:266px;
+	height:37px;
+	border:0px;
+	cursor:pointer;}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
